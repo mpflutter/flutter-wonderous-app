@@ -10,12 +10,12 @@ class AppIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String i = icon.name.toLowerCase().replaceAll('_', '-');
-    String path = 'assets/images/_common/icons/icon-$i.png';
+    String path = 'https://dist.mpflutter.com/wonderous/images/_common/icons/icon-$i.png';
     return SizedBox(
       width: size,
       height: size,
       child: Center(
-        child: Image.asset(path,
+        child: Image.network(path,
             width: size, height: size, color: color ?? $styles.colors.offWhite, filterQuality: FilterQuality.high),
       ),
     );

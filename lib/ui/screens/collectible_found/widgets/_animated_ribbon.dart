@@ -34,7 +34,7 @@ class _AnimatedRibbon extends StatelessWidget {
   }
 
   Widget _buildEnd(BuildContext context, bool flip) {
-    Widget end = Image.asset(ImagePaths.ribbonEnd, height: height);
+    Widget end = Image.network(ImagePaths.ribbonEnd, height: height);
     if (flip) end = Transform.scale(scaleX: -1, child: end);
     double m = flip ? 1 : -1;
     return end

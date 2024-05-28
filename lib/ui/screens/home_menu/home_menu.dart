@@ -109,7 +109,7 @@ class _HomeMenuState extends State<HomeMenu> {
           _buildGridBtn(context, wondersLogic.all[3]),
           SizedBox(
             width: _btnSize(context),
-            child: SvgPicture.asset(SvgPaths.compassFull, colorFilter: $styles.colors.offWhite.colorFilter),
+            child: SvgPicture.network(SvgPaths.compassFull, colorFilter: $styles.colors.offWhite.colorFilter),
           ),
           _buildGridBtn(context, wondersLogic.all[4]),
         ]),
@@ -180,7 +180,7 @@ class _HomeMenuState extends State<HomeMenu> {
           onPressed: () => _handleWonderPressed(context, btnData),
           padding: EdgeInsets.zero,
           semanticLabel: btnData.title,
-          child: SizedBox.expand(child: Image.asset(btnData.type.homeBtn, fit: BoxFit.cover)),
+          child: SizedBox.expand(child: Image.network(btnData.type.homeBtn, fit: BoxFit.cover)),
         ),
       ),
     );

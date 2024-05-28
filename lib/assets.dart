@@ -16,8 +16,8 @@ class AppBitmaps {
 
 /// Consolidates raster image paths used across the app
 class ImagePaths {
-  static String root = 'assets/images';
-  static String common = 'assets/images/_common';
+  static String root = 'https://dist.mpflutter.com/wonderous/images';
+  static String common = 'https://dist.mpflutter.com/wonderous/images/_common';
   static String cloud = '$common/cloud-white.png';
 
   static String collectibles = '$root/collectibles';

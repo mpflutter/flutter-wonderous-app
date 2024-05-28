@@ -43,7 +43,7 @@ class CompassDivider extends StatelessWidget {
           child: SizedBox(
               height: 32,
               width: 32,
-              child: SvgPicture.asset(
+              child: SvgPicture.network(
                 SvgPaths.compassFull,
                 colorFilter: (compassColor ?? $styles.colors.accent2).colorFilter,
               )),

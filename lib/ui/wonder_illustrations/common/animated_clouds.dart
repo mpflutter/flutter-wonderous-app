@@ -145,7 +145,7 @@ class _Cloud extends StatelessWidget {
   Widget build(BuildContext context) => Transform.scale(
         scaleX: scale * (flipX ? -1 : 1),
         scaleY: scale * (flipY ? -1 : 1),
-        child: Image.asset(
+        child: Image.network(
           ImagePaths.cloud,
           opacity: AlwaysStoppedAnimation(.4 * opacity),
           width: size * scale,

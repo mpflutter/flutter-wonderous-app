@@ -18,7 +18,7 @@ class _SlidingImageStack extends StatelessWidget {
             top: Radius.circular(top ? totalSize.width / 2 : 0),
             bottom: Radius.circular(top ? 0 : totalSize.width / 2),
           ),
-          image: DecorationImage(image: AssetImage(url), fit: BoxFit.fitWidth, alignment: align),
+          image: DecorationImage(image: NetworkImage(url), fit: BoxFit.fitWidth, alignment: align),
         ),
       );
     }

@@ -63,7 +63,7 @@ class _Text {
 
   final Map<String, TextStyle> _quoteFonts = {
     'en': TextStyle(fontFamily: 'Cinzel'),
-    'zh': TextStyle(fontFamily: 'MaShanZheng'),
+    // 'zh': TextStyle(fontFamily: 'MaShanZheng'),
   };
 
   final Map<String, TextStyle> _wonderTitleFonts = {

@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/ui/wonder_illustrations/common/wonder_illustration_builder.dart';
+import 'package:http/http.dart' as http;
 
 /// Combines [Align], [FractionalBoxWithMinSize], [Image] and [Transform.translate]
 /// to standardize behavior across the various wonder illustrations
@@ -72,8 +73,8 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
     // Dynamically determine the aspect ratio of the image, so we can more easily position it
     if (aspectRatio == null) {
       aspectRatio == 0; // indicates load has started, so we don't run twice
-      rootBundle.load(imgPath).then((img) async {
-        uiImage = await decodeImageFromList(img.buffer.asUint8List());
+      http.get(Uri.parse(imgPath)).then((img) async {
+        uiImage = await decodeImageFromList(img.bodyBytes);
         if (!mounted) return;
         setState(() => aspectRatio = uiImage!.width / uiImage!.height);
       });
@@ -86,7 +87,7 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
             final anim = wonderBuilder.anim;
             final curvedAnim = Curves.easeOut.transform(anim.value);
             final config = wonderBuilder.widget.config;
-            Widget img = Image.asset(imgPath, opacity: anim, fit: BoxFit.fitHeight);
+            Widget img = Image.network(imgPath, opacity: anim, fit: BoxFit.fitHeight);
             // Add overflow box so image doesn't get clipped as we translate it around
             img = OverflowBox(maxWidth: 2500, child: img);
 

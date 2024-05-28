@@ -174,7 +174,7 @@ class _WonderHomeBtn extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(99),
           color: wonderType.fgColor,
-          image: DecorationImage(image: AssetImage(wonderType.homeBtn), fit: BoxFit.fill),
+          image: DecorationImage(image: NetworkImage(wonderType.homeBtn), fit: BoxFit.fill),
         ),
       ),
     );
@@ -227,7 +227,7 @@ class _TabBtn extends StatelessWidget {
             semanticLabel: label,
             minimumSize: _isVertical ? Size(crossBtnSize, mainAxisSize) : Size(mainAxisSize, crossBtnSize),
             // Image icon
-            child: Image.asset(
+            child: Image.network(
               iconImgPath,
               height: iconSize,
               width: iconSize,

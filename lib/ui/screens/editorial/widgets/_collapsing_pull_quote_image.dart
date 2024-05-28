@@ -25,7 +25,7 @@ class _CollapsingPullQuoteImage extends StatelessWidget {
       if (top) offsetY *= -1; // flip?
       return Transform.translate(
         offset: Offset(0, offsetY),
-        child:Text(value, style: quoteStyle, textAlign: TextAlign.center),
+        child: Text(value, style: quoteStyle, textAlign: TextAlign.center),
       );
     }
 
@@ -121,7 +121,7 @@ class _CollapsingPullQuoteImage extends StatelessWidget {
       children: [
         ScalingListItem(
           scrollPos: scrollPos,
-          child: Image.asset(
+          child: Image.network(
             data.type.photo2,
             fit: BoxFit.cover,
             opacity: AlwaysStoppedAnimation(1 - collapseAmt * .7),

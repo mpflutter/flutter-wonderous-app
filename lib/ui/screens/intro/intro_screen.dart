@@ -299,7 +299,8 @@ class _WonderousLogo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ExcludeSemantics(
-          child: SvgPicture.asset(SvgPaths.compassSimple, colorFilter: $styles.colors.offWhite.colorFilter, height: 48),
+          child:
+              SvgPicture.network(SvgPaths.compassSimple, colorFilter: $styles.colors.offWhite.colorFilter, height: 48),
         ),
         Gap($styles.insets.xs),
         StaticTextScale(
@@ -323,14 +324,14 @@ class _PageImage extends StatelessWidget {
     return Stack(
       children: [
         SizedBox.expand(
-          child: Image.asset(
+          child: Image.network(
             '${ImagePaths.common}/intro-${data.img}.jpg',
             fit: BoxFit.cover,
             alignment: Alignment.centerRight,
           ),
         ),
         Positioned.fill(
-            child: Image.asset(
+            child: Image.network(
           '${ImagePaths.common}/intro-mask-${data.mask}.png',
           fit: BoxFit.fill,
         )),

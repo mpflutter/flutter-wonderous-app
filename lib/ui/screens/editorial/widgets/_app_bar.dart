@@ -67,7 +67,7 @@ class _AppBar extends StatelessWidget {
                             double opacity = (.4 + (value / 1500)).clamp(0, 1);
                             return ScalingListItem(
                               scrollPos: scrollPos,
-                              child: Image.asset(
+                              child: Image.network(
                                 wonderType.photo1,
                                 fit: BoxFit.cover,
                                 opacity: AlwaysStoppedAnimation(opacity),

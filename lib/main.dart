@@ -12,20 +12,32 @@ import 'package:wonders/logic/unsplash_logic.dart';
 import 'package:wonders/logic/wonders_logic.dart';
 import 'package:wonders/ui/common/app_shortcuts.dart';
 
+import 'package:mpflutter_core/mpflutter_core.dart';
+
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // Keep native splash screen up until app is finished bootstrapping
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  GoRouter.optionURLReflectsImperativeAPIs = true;
+
+  if (!kIsMPFlutter) {
+    // Keep native splash screen up until app is finished bootstrapping
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+    GoRouter.optionURLReflectsImperativeAPIs = true;
+  }
 
   // Start app
   registerSingletons();
 
-  runApp(WondersApp());
+  if (kIsMPFlutter) {
+    runMPApp(WondersApp());
+  } else {
+    runApp(WondersApp());
+  }
+
   await appLogic.bootstrap();
 
   // Remove splash screen when bootstrap is complete
-  FlutterNativeSplash.remove();
+  if (!kIsMPFlutter) {
+    FlutterNativeSplash.remove();
+  }
 }
 
 /// Creates an app using the [MaterialApp.router] constructor and the global `appRouter`, an instance of [GoRouter].

@@ -7,7 +7,7 @@ class WonderousLogo extends StatelessWidget {
   final double width;
 
   @override
-  Widget build(BuildContext context) => Image.asset(
+  Widget build(BuildContext context) => Image.network(
         ImagePaths.appLogoPlain,
         fit: BoxFit.cover,
         width: width,

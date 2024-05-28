@@ -15,7 +15,7 @@ class _CelebrationParticles extends StatelessWidget {
         child: ParticleField(
           blendMode: BlendMode.dstIn,
           spriteSheet: SpriteSheet(
-            image: AssetImage(ImagePaths.particle),
+            image: NetworkImage(ImagePaths.particle),
             frameWidth: 21,
             scale: 0.75,
           ),

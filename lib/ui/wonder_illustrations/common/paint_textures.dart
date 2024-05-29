@@ -1,3 +1,4 @@
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 
 class IllustrationTexture extends StatelessWidget {
@@ -18,7 +19,7 @@ class IllustrationTexture extends StatelessWidget {
           child: Transform.scale(
               scaleX: scale * (flipX ? -1 : 1),
               scaleY: scale * (flipY ? -1 : 1),
-              child: Image.network(path,
+              child: Image.network(useNativeCodec(path),
                   repeat: ImageRepeat.repeat,
                   fit: BoxFit.contain,
                   alignment: Alignment.topCenter,

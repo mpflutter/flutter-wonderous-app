@@ -47,7 +47,7 @@ class TimelineSection extends StatelessWidget {
         image: DecorationImage(
           fit: BoxFit.cover,
           alignment: Alignment(0, -.5),
-          image: NetworkImage(data.type.flattened),
+          image: MPFlutterNetworkImage(data.type.flattened),
         ),
       ),
     );

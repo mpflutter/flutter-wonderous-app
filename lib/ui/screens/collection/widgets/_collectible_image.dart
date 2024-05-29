@@ -53,7 +53,7 @@ class _CollectibleImage extends StatelessWidget {
             !isNew ? null : [BoxShadow(color: $styles.colors.accent1.withOpacity(0.6), blurRadius: $styles.insets.sm)],
       ),
       child: AppImage(
-        image: NetworkImage(collectible.imageUrlSmall),
+        image: MPFlutterNetworkImage(collectible.imageUrlSmall),
         fit: BoxFit.cover,
         scale: 0.5,
       ),

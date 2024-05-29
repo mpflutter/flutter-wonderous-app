@@ -1,3 +1,4 @@
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/data/artifact_data.dart';
 
@@ -14,7 +15,7 @@ class CollectibleData {
     required this.artifactId,
     required this.wonder,
   }) {
-    icon = NetworkImage('${ImagePaths.collectibles}/$iconName.png');
+    icon = MPFlutterNetworkImage('${ImagePaths.collectibles}/$iconName.png');
   }
 
   final String title;

@@ -1,3 +1,4 @@
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:particle_field/particle_field.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/data/collectible_data.dart';

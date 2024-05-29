@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:ui' as ui;
 
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/ui/wonder_illustrations/common/wonder_illustration_builder.dart';
 import 'package:http/http.dart' as http;
@@ -62,9 +64,12 @@ class IllustrationPiece extends StatefulWidget {
   State<IllustrationPiece> createState() => _IllustrationPieceState();
 }
 
+Map<String, dynamic> imageCache = {};
+Map<String, List<Function(http.Response)>> imageLoadingBlocks = {};
+
 class _IllustrationPieceState extends State<IllustrationPiece> {
   double? aspectRatio;
-  ui.Image? uiImage;
+  bool uiImageLoaded = false;
   @override
   Widget build(BuildContext context) {
     final wonderBuilder = context.watch<WonderIllustrationBuilderState>();
@@ -73,11 +78,28 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
     // Dynamically determine the aspect ratio of the image, so we can more easily position it
     if (aspectRatio == null) {
       aspectRatio == 0; // indicates load has started, so we don't run twice
-      http.get(Uri.parse(imgPath)).then((img) async {
-        uiImage = await decodeImageFromList(img.bodyBytes);
-        if (!mounted) return;
-        setState(() => aspectRatio = uiImage!.width / uiImage!.height);
-      });
+      if (imageCache[imgPath] != null) {
+        final data = json.decode(imageCache[imgPath]);
+        uiImageLoaded = true;
+        setState(() => aspectRatio = (double.tryParse(data['width']) ?? 1) / (double.tryParse(data['height']) ?? 1));
+      } else {
+        imageLoadingBlocks[imgPath] ??= [];
+        if (imageLoadingBlocks[imgPath]!.isEmpty) {
+          http.get(Uri.parse('$imgPath?imageInfo')).then((value) {
+            for (var element in imageLoadingBlocks[imgPath]!) {
+              element(value);
+            }
+            imageLoadingBlocks[imgPath]!.clear();
+          });
+        }
+        imageLoadingBlocks[imgPath]!.add((value) {
+          if (!mounted) return;
+          imageCache[imgPath] = value.body;
+          final data = json.decode(value.body);
+          uiImageLoaded = true;
+          setState(() => aspectRatio = (double.tryParse(data['width']) ?? 1) / (double.tryParse(data['height']) ?? 1));
+        });
+      }
     }
     return Align(
       alignment: widget.alignment,
@@ -87,7 +109,7 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
             final anim = wonderBuilder.anim;
             final curvedAnim = Curves.easeOut.transform(anim.value);
             final config = wonderBuilder.widget.config;
-            Widget img = Image.network(imgPath, opacity: anim, fit: BoxFit.fitHeight);
+            Widget img = Image.network(useNativeCodec(imgPath), opacity: anim, fit: BoxFit.fitHeight);
             // Add overflow box so image doesn't get clipped as we translate it around
             img = OverflowBox(maxWidth: 2500, child: img);
 
@@ -114,7 +136,7 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
               );
             }
             Widget? content;
-            if (uiImage != null) {
+            if (uiImageLoaded) {
               content = Transform.translate(
                 offset: finalTranslation,
                 child: Transform.scale(
@@ -131,7 +153,7 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
             return Stack(
               children: [
                 if (widget.bottom != null) Positioned.fill(child: widget.bottom!.call(context)),
-                if (uiImage != null) ...[
+                if (uiImageLoaded) ...[
                   widget.enableHero ? Hero(tag: '$type-${widget.fileName}', child: content!) : content!,
                 ],
                 if (widget.top != null) Positioned.fill(child: widget.top!.call(context)),

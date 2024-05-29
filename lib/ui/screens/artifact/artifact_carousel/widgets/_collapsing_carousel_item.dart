@@ -88,7 +88,7 @@ class _DoubleBorderImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(999),
             child: ColoredBox(
               color: $styles.colors.greyMedium,
-              child: AppImage(image: NetworkImage(data.imageUrlSmall), fit: BoxFit.cover, scale: 0.5),
+              child: AppImage(image: MPFlutterNetworkImage(data.imageUrlSmall), fit: BoxFit.cover, scale: 0.5),
             ),
           ),
         ),

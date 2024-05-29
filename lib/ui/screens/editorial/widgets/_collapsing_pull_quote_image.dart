@@ -122,7 +122,7 @@ class _CollapsingPullQuoteImage extends StatelessWidget {
         ScalingListItem(
           scrollPos: scrollPos,
           child: Image.network(
-            data.type.photo2,
+            useNativeCodec(data.type.photo2),
             fit: BoxFit.cover,
             opacity: AlwaysStoppedAnimation(1 - collapseAmt * .7),
           ),

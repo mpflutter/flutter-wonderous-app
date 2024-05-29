@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/data/highlight_data.dart';
 import 'package:wonders/ui/common/app_icons.dart';

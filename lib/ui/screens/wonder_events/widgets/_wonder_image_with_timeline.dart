@@ -72,7 +72,7 @@ class _WonderImageWithTimeline extends StatelessWidget {
           ClipPath(
             clipper: CurvedTopClipper(),
             child: Image.network(
-              data.type.flattened,
+              useNativeCodec(data.type.flattened),
               width: 200,
               fit: BoxFit.cover,
               alignment: Alignment(0, -.5),

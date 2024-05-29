@@ -1,3 +1,4 @@
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 
 class WonderDetailsTabMenu extends StatelessWidget {
@@ -174,7 +175,7 @@ class _WonderHomeBtn extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(99),
           color: wonderType.fgColor,
-          image: DecorationImage(image: NetworkImage(wonderType.homeBtn), fit: BoxFit.fill),
+          image: DecorationImage(image: MPFlutterNetworkImage(wonderType.homeBtn), fit: BoxFit.fill),
         ),
       ),
     );

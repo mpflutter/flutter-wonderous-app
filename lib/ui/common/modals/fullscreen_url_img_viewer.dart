@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:mpflutter_core/image/mpflutter_network_image_js.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/ui/common/app_icons.dart';
 import 'package:wonders/ui/common/controls/app_header.dart';
@@ -159,7 +160,7 @@ class _ViewerState extends State<_Viewer> with SingleTickerProviderStateMixin {
         child: Hero(
           tag: widget.url,
           child: AppImage(
-            image: NetworkImage(
+            image: MPFlutterNetworkImage(
               widget.url,
             ),
             fit: BoxFit.contain,

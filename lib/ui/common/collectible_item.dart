@@ -1,3 +1,4 @@
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/collectibles_logic.dart';
 import 'package:wonders/logic/data/collectible_data.dart';
@@ -8,7 +9,7 @@ import 'package:wonders/ui/screens/collectible_found/collectible_found_screen.da
 class CollectibleItem extends StatelessWidget with GetItMixin {
   CollectibleItem(this.collectible, {this.size = 64.0, Key? key, this.focus}) : super(key: key) {
     // pre-fetch the image, so it's ready if we show the collectible found screen.
-    _imageProvider = NetworkImage(collectible.imageUrl);
+    _imageProvider = MPFlutterNetworkImage(collectible.imageUrl);
     _imageProvider.resolve(ImageConfiguration()).addListener(ImageStreamListener((_, __) {}));
   }
 

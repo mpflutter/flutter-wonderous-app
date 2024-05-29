@@ -15,7 +15,7 @@ class _CelebrationParticles extends StatelessWidget {
         child: ParticleField(
           blendMode: BlendMode.dstIn,
           spriteSheet: SpriteSheet(
-            image: NetworkImage(ImagePaths.particle),
+            image: MPFlutterNetworkImage(ImagePaths.particle),
             frameWidth: 21,
             scale: 0.75,
           ),

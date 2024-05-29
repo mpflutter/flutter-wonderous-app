@@ -30,7 +30,7 @@ class _ArtifactImageBtn extends StatelessWidget {
               child: Hero(
                 tag: data.selfHostedImageUrl,
                 child: AppImage(
-                  image: NetworkImage(data.selfHostedImageUrl),
+                  image: MPFlutterNetworkImage(data.selfHostedImageUrl),
                   fit: BoxFit.contain,
                   distractor: true,
                   scale: FullscreenUrlImgViewer.imageScale, // so the image isn't reloaded

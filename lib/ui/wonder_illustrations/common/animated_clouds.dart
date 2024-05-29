@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/ui/common/utils/context_utils.dart';
 
@@ -146,7 +147,7 @@ class _Cloud extends StatelessWidget {
         scaleX: scale * (flipX ? -1 : 1),
         scaleY: scale * (flipY ? -1 : 1),
         child: Image.network(
-          ImagePaths.cloud,
+          useNativeCodec(ImagePaths.cloud),
           opacity: AlwaysStoppedAnimation(.4 * opacity),
           width: size * scale,
           fit: BoxFit.fitWidth,

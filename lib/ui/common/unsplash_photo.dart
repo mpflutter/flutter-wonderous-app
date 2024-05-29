@@ -1,3 +1,4 @@
+import 'package:mpflutter_core/image/mpflutter_network_image_js.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/data/unsplash_photo_data.dart';
 
@@ -15,7 +16,7 @@ class UnsplashPhoto extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         AppImage(
-          image: NetworkImage(UnsplashPhotoData.getSelfHostedUrl(id, size)),
+          image: MPFlutterNetworkImage(UnsplashPhotoData.getSelfHostedUrl(id, size)),
           fit: fit,
           progress: true,
           scale: 1,

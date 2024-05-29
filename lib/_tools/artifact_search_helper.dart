@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:mpflutter_core/image/mpflutter_network_image_js.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/data/wonder_data.dart';
@@ -188,7 +189,7 @@ class _ArtifactSearchHelperState extends State<ArtifactSearchHelper> {
 
   Future<double?> _getAspectRatio(String imagePath) async {
     Completer<double?> completer = Completer<double?>();
-    NetworkImage image = NetworkImage(imagePath);
+    NetworkImage image = MPFlutterNetworkImage(imagePath);
     ImageStream stream = image.resolve(ImageConfiguration());
     stream.addListener(ImageStreamListener(
       (info, _) => completer.complete(info.image.width / info.image.height),

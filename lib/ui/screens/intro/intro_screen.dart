@@ -1,4 +1,5 @@
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mpflutter_core/mpflutter_core.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/common/platform_info.dart';
 import 'package:wonders/ui/common/app_icons.dart';
@@ -325,14 +326,16 @@ class _PageImage extends StatelessWidget {
       children: [
         SizedBox.expand(
           child: Image.network(
-            '${ImagePaths.common}/intro-${data.img}.jpg',
+            useNativeCodec('${ImagePaths.common}/intro-${data.img}.jpg'),
             fit: BoxFit.cover,
             alignment: Alignment.centerRight,
           ),
         ),
         Positioned.fill(
             child: Image.network(
-          '${ImagePaths.common}/intro-mask-${data.mask}.png',
+          useNativeCodec(
+            '${ImagePaths.common}/intro-mask-${data.mask}.png',
+          ),
           fit: BoxFit.fill,
         )),
       ],

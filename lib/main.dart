@@ -3,13 +3,19 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/artifact_api_logic.dart';
+import 'package:wonders/logic/artifact_api_logic.dart' deferred as artifact_api_logic;
 import 'package:wonders/logic/artifact_api_service.dart';
 import 'package:wonders/logic/collectibles_logic.dart';
+import 'package:wonders/logic/collectibles_logic.dart' deferred as collectibles_logic;
 import 'package:wonders/logic/native_widget_service.dart';
 import 'package:wonders/logic/locale_logic.dart';
+import 'package:wonders/logic/locale_logic.dart' deferred as locale_logic;
 import 'package:wonders/logic/timeline_logic.dart';
+import 'package:wonders/logic/timeline_logic.dart' deferred as timeline_logic;
 import 'package:wonders/logic/unsplash_logic.dart';
+import 'package:wonders/logic/unsplash_logic.dart' deferred as unsplash_logic;
 import 'package:wonders/logic/wonders_logic.dart';
+import 'package:wonders/logic/wonders_logic.dart' deferred as wonders_logic;
 import 'package:wonders/ui/common/app_shortcuts.dart';
 
 import 'package:mpflutter_core/mpflutter_core.dart';
@@ -22,6 +28,13 @@ void main() async {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     GoRouter.optionURLReflectsImperativeAPIs = true;
   }
+
+  await wonders_logic.loadLibrary();
+  await unsplash_logic.loadLibrary();
+  await timeline_logic.loadLibrary();
+  await locale_logic.loadLibrary();
+  await collectibles_logic.loadLibrary();
+  await artifact_api_logic.loadLibrary();
 
   // Start app
   registerSingletons();
@@ -61,6 +74,9 @@ class WondersApp extends StatelessWidget with GetItMixin {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+      // onNavigationNotification: (_) {
+      //   return false;
+      // },
     );
   }
 }
@@ -70,20 +86,20 @@ void registerSingletons() {
   // Top level app controller
   GetIt.I.registerLazySingleton<AppLogic>(() => AppLogic());
   // Wonders
-  GetIt.I.registerLazySingleton<WondersLogic>(() => WondersLogic());
+  GetIt.I.registerLazySingleton<WondersLogic>(() => wonders_logic.WondersLogic());
   // Timeline / Events
-  GetIt.I.registerLazySingleton<TimelineLogic>(() => TimelineLogic());
+  GetIt.I.registerLazySingleton<TimelineLogic>(() => timeline_logic.TimelineLogic());
   // Search
-  GetIt.I.registerLazySingleton<ArtifactAPILogic>(() => ArtifactAPILogic());
+  GetIt.I.registerLazySingleton<ArtifactAPILogic>(() => artifact_api_logic.ArtifactAPILogic());
   GetIt.I.registerLazySingleton<ArtifactAPIService>(() => ArtifactAPIService());
   // Settings
   GetIt.I.registerLazySingleton<SettingsLogic>(() => SettingsLogic());
   // Unsplash
-  GetIt.I.registerLazySingleton<UnsplashLogic>(() => UnsplashLogic());
+  GetIt.I.registerLazySingleton<UnsplashLogic>(() => unsplash_logic.UnsplashLogic());
   // Collectibles
-  GetIt.I.registerLazySingleton<CollectiblesLogic>(() => CollectiblesLogic());
+  GetIt.I.registerLazySingleton<CollectiblesLogic>(() => collectibles_logic.CollectiblesLogic());
   // Localizations
-  GetIt.I.registerLazySingleton<LocaleLogic>(() => LocaleLogic());
+  GetIt.I.registerLazySingleton<LocaleLogic>(() => locale_logic.LocaleLogic());
   // Home Widget Service
   GetIt.I.registerLazySingleton<NativeWidgetService>(() => NativeWidgetService());
 }

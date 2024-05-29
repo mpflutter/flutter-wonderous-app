@@ -92,9 +92,9 @@ final appRouter = GoRouter(
                 _collectionRoute,
                 _artifactRoute,
                 // Youtube Video
-                AppRoute('video/:videoId', (s) {
-                  return FullscreenVideoViewer(id: s.pathParameters['videoId']!);
-                }),
+                // AppRoute('video/:videoId', (s) {
+                //   return FullscreenVideoViewer(id: s.pathParameters['videoId']!);
+                // }),
 
                 // Search
                 AppRoute(
@@ -108,11 +108,11 @@ final appRouter = GoRouter(
                 ),
 
                 // Maps
-                AppRoute(
-                    'maps/:mapsType',
-                    (s) => FullscreenMapsViewer(
-                          type: _parseWonderType(s.pathParameters['mapsType']),
-                        )),
+                // AppRoute(
+                //     'maps/:mapsType',
+                //     (s) => FullscreenMapsViewer(
+                //           type: _parseWonderType(s.pathParameters['mapsType']),
+                //         )),
               ],
             ),
           ]),

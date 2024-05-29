@@ -1,10 +1,13 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart' deferred as app_localizations;
+import 'package:flutter_localizations/flutter_localizations.dart' deferred as flutter_localizations;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter/material.dart' deferred as material show ThemeData, MaterialApp;
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/artifact_api_logic.dart';
 import 'package:wonders/logic/artifact_api_logic.dart' deferred as artifact_api_logic;
 import 'package:wonders/logic/artifact_api_service.dart';
+import 'package:wonders/logic/artifact_api_service.dart' deferred as artifact_api_service;
 import 'package:wonders/logic/collectibles_logic.dart';
 import 'package:wonders/logic/collectibles_logic.dart' deferred as collectibles_logic;
 import 'package:wonders/logic/native_widget_service.dart';
@@ -16,6 +19,7 @@ import 'package:wonders/logic/unsplash_logic.dart';
 import 'package:wonders/logic/unsplash_logic.dart' deferred as unsplash_logic;
 import 'package:wonders/logic/wonders_logic.dart';
 import 'package:wonders/logic/wonders_logic.dart' deferred as wonders_logic;
+import 'package:wonders/logic/settings_logic.dart' deferred as settings_logic;
 import 'package:wonders/ui/common/app_shortcuts.dart';
 
 import 'package:mpflutter_core/mpflutter_core.dart';
@@ -29,12 +33,17 @@ void main() async {
     GoRouter.optionURLReflectsImperativeAPIs = true;
   }
 
+  await material.loadLibrary();
   await wonders_logic.loadLibrary();
   await unsplash_logic.loadLibrary();
   await timeline_logic.loadLibrary();
   await locale_logic.loadLibrary();
   await collectibles_logic.loadLibrary();
   await artifact_api_logic.loadLibrary();
+  await settings_logic.loadLibrary();
+  await artifact_api_service.loadLibrary();
+  await app_localizations.loadLibrary();
+  await flutter_localizations.loadLibrary();
 
   // Start app
   registerSingletons();
@@ -59,21 +68,21 @@ class WondersApp extends StatelessWidget with GetItMixin {
   @override
   Widget build(BuildContext context) {
     final locale = watchX((SettingsLogic s) => s.currentLocale);
-    return MaterialApp.router(
+    return material.MaterialApp.router(
       routeInformationProvider: appRouter.routeInformationProvider,
       routeInformationParser: appRouter.routeInformationParser,
       locale: locale == null ? null : Locale(locale),
       debugShowCheckedModeBanner: false,
       routerDelegate: appRouter.routerDelegate,
-      shortcuts: AppShortcuts.defaults,
-      theme: ThemeData(fontFamily: $styles.text.body.fontFamily, useMaterial3: true),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+      // shortcuts: AppShortcuts.defaults,
+      theme: material.ThemeData(fontFamily: $styles.text.body.fontFamily, useMaterial3: true),
+      localizationsDelegates: [
+        app_localizations.AppLocalizations.delegate,
+        flutter_localizations.GlobalMaterialLocalizations.delegate,
+        flutter_localizations.GlobalWidgetsLocalizations.delegate,
+        flutter_localizations.GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: app_localizations.AppLocalizations.supportedLocales,
       // onNavigationNotification: (_) {
       //   return false;
       // },
@@ -91,9 +100,9 @@ void registerSingletons() {
   GetIt.I.registerLazySingleton<TimelineLogic>(() => timeline_logic.TimelineLogic());
   // Search
   GetIt.I.registerLazySingleton<ArtifactAPILogic>(() => artifact_api_logic.ArtifactAPILogic());
-  GetIt.I.registerLazySingleton<ArtifactAPIService>(() => ArtifactAPIService());
+  GetIt.I.registerLazySingleton<ArtifactAPIService>(() => artifact_api_service.ArtifactAPIService());
   // Settings
-  GetIt.I.registerLazySingleton<SettingsLogic>(() => SettingsLogic());
+  GetIt.I.registerLazySingleton<SettingsLogic>(() => settings_logic.SettingsLogic());
   // Unsplash
   GetIt.I.registerLazySingleton<UnsplashLogic>(() => unsplash_logic.UnsplashLogic());
   // Collectibles

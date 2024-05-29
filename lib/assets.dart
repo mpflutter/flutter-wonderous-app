@@ -7,17 +7,18 @@ class AppBitmaps {
   static late final BitmapDescriptor mapMarker;
 
   static Future<void> init() async {
-    mapMarker = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(devicePixelRatio: PlatformInfo.pixelRatio),
-      '${ImagePaths.common}/location-pin.png',
-    );
+    // mapMarker = await BitmapDescriptor.fromAssetImage(
+    //   ImageConfiguration(devicePixelRatio: PlatformInfo.pixelRatio),
+    //   '${ImagePaths.common}/location-pin.png',
+    // );
   }
 }
 
 /// Consolidates raster image paths used across the app
 class ImagePaths {
   static String root = 'https://dist.mpflutter.com/wonderous/images';
-  static String common = 'https://dist.mpflutter.com/wonderous/images/_common';
+  static String common = 'https://dist.mpflutter.com/wonderous/images/_common/3.0x';
+  static String commonNoScale = 'https://dist.mpflutter.com/wonderous/images/_common';
   static String cloud = '$common/cloud-white.png';
 
   static String collectibles = '$root/collectibles';
@@ -36,8 +37,8 @@ class ImagePaths {
 
 /// Consolidates SCG image paths in their own class, hints to the UI to use an SvgPicture to render
 class SvgPaths {
-  static String compassFull = '${ImagePaths.common}/compass-full.svg';
-  static String compassSimple = '${ImagePaths.common}/compass-simple.svg';
+  static String compassFull = '${ImagePaths.commonNoScale}/compass-full.svg';
+  static String compassSimple = '${ImagePaths.commonNoScale}/compass-simple.svg';
 }
 
 /// For wonder specific assets, add an extension to [WonderType] for easy lookup

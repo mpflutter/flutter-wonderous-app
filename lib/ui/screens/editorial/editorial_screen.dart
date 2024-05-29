@@ -26,6 +26,7 @@ import 'package:wonders/ui/common/utils/context_utils.dart';
 import 'package:wonders/ui/wonder_illustrations/common/wonder_illustration.dart';
 import 'package:wonders/ui/wonder_illustrations/common/wonder_illustration_config.dart';
 import 'package:wonders/ui/wonder_illustrations/common/wonder_title_text.dart';
+import 'package:mpflutter_wechat_api/mpflutter_wechat_api.dart' show wx, OpenLocationOption;
 
 part 'widgets/_app_bar.dart';
 part 'widgets/_callout.dart';

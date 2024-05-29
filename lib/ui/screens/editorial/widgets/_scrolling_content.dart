@@ -184,7 +184,7 @@ class _YouTubeThumbnail extends StatelessWidget {
           children: [
             AppBtn.basic(
               semanticLabel: $strings.scrollingContentSemanticYoutube,
-              onPressed: handlePressed,
+              onPressed: () {},
               child: Stack(children: [
                 AppImage(image: MPFlutterNetworkImage(imageUrl), fit: BoxFit.cover, scale: 1.0),
                 Positioned.fill(
@@ -229,49 +229,20 @@ class _MapsThumbnailState extends State<_MapsThumbnail> {
 
   @override
   Widget build(BuildContext context) {
-    void handlePressed() => context.go(ScreenPaths.maps(widget.data.type));
     if (PlatformInfo.isDesktop) return SizedBox.shrink();
-    return AspectRatio(
-      aspectRatio: 1.65,
-      child: MergeSemantics(
-        child: Column(
-          children: [
-            Flexible(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular($styles.corners.md),
-                child: AppBtn.basic(
-                  semanticLabel: $strings.scrollingContentSemanticOpen,
-                  onPressed: handlePressed,
-
-                  /// To prevent the map widget from absorbing the onPressed action, use a Stack + IgnorePointer + a transparent Container
-                  child: Stack(
-                    children: [
-                      Positioned.fill(child: ColoredBox(color: Colors.transparent)),
-                      IgnorePointer(
-                        child: GoogleMap(
-                          markers: {getMapsMarker(startPos.target)},
-                          zoomControlsEnabled: false,
-                          mapType: MapType.normal,
-                          mapToolbarEnabled: false,
-                          initialCameraPosition: startPos,
-                          myLocationButtonEnabled: false,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Gap($styles.insets.xs),
-            Semantics(
-              sortKey: OrdinalSortKey(0),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: $styles.insets.md),
-                child: Text(widget.data.mapCaption, style: $styles.text.caption),
-              ),
-            ),
-          ],
-        ),
+    return GestureDetector(
+      onTap: () {
+        wx.openLocation(OpenLocationOption()
+          ..latitude = widget.data.lat
+          ..longitude = widget.data.lng);
+      },
+      child: SizedBox(
+        height: 44,
+        child: Center(
+            child: Text(
+          'Tap To Open Map',
+          style: TextStyle(color: Colors.blue, fontSize: 14),
+        )),
       ),
     );
   }

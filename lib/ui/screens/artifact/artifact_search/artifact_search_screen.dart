@@ -1,5 +1,6 @@
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:mpflutter_core/mpflutter_core.dart';
+import 'package:mpflutter_wechat_editable/mpflutter_wechat_editable.dart';
 import 'package:wonders/common_libs.dart';
 import 'package:wonders/logic/data/wonder_data.dart';
 import 'package:wonders/logic/data/wonders_data/search/search_data.dart';
@@ -100,11 +101,11 @@ class _ArtifactSearchScreenState extends State<ArtifactSearchScreen> with GetItS
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           AppHeader(title: $strings.artifactsSearchTitleBrowse, subtitle: wonder.title),
-          Container(
-            color: $styles.colors.black,
-            padding: EdgeInsets.fromLTRB($styles.insets.sm, $styles.insets.sm, $styles.insets.sm, 0),
-            child: _SearchInput(onSubmit: _handleSearchSubmitted, wonder: wonder),
-          ),
+          // Container(
+          //   color: $styles.colors.black,
+          //   padding: EdgeInsets.fromLTRB($styles.insets.sm, $styles.insets.sm, $styles.insets.sm, 0),
+          //   child: _SearchInput(onSubmit: _handleSearchSubmitted, wonder: wonder),
+          // ),
           Container(
             color: $styles.colors.black,
             padding: EdgeInsets.all($styles.insets.xs * 1.5),

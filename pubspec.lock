@@ -520,6 +520,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.2.3"
+  mpflutter_wechat_editable:
+    dependency: "direct main"
+    description:
+      name: mpflutter_wechat_editable
+      sha256: "68c6b38a5b9e3671782c8e4030c8adc2623ab6c847bde7ab519b70464e849f35"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.6"
   nested:
     dependency: transitive
     description:

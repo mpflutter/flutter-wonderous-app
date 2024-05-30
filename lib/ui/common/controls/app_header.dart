@@ -9,6 +9,7 @@ class AppHeader extends StatelessWidget {
       this.showBackBtn = true,
       this.isTransparent = false,
       this.onBack,
+      this.leading,
       this.trailing,
       this.backIcon = AppIcons.prev,
       this.backBtnSemantics})
@@ -20,6 +21,7 @@ class AppHeader extends StatelessWidget {
   final String? backBtnSemantics;
   final bool isTransparent;
   final VoidCallback? onBack;
+  final Widget Function(BuildContext context)? leading;
   final Widget Function(BuildContext context)? trailing;
 
   @override
@@ -63,12 +65,13 @@ class AppHeader extends StatelessWidget {
                 child: Center(
                   child: Row(children: [
                     Gap($styles.insets.sm),
-                    if (showBackBtn)
-                      BackBtn(
-                        onPressed: onBack,
-                        icon: backIcon,
-                        semanticLabel: backBtnSemantics,
-                      ),
+                    showBackBtn
+                        ? BackBtn(
+                            onPressed: onBack,
+                            icon: backIcon,
+                            semanticLabel: backBtnSemantics,
+                          )
+                        : (leading?.call(context) ?? SizedBox()),
                     Spacer(),
                     if (trailing != null) trailing!.call(context),
                     Gap($styles.insets.sm),

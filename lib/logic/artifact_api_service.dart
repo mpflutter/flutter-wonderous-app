@@ -3,7 +3,7 @@ import 'package:wonders/logic/data/artifact_data.dart';
 
 class ArtifactAPIService {
   final String _baseMETUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
-  final String _baseSelfHostedUrl = 'https://www.wonderous.info/met';
+  final String _baseSelfHostedUrl = 'https://api.mpflutter.com/wonderous/met';
 
   Future<ServiceResult<ArtifactData?>> getMetObjectByID(String id) async {
     HttpResponse? response = await HttpClient.send('$_baseMETUrl/objects/$id');

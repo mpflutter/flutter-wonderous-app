@@ -128,12 +128,12 @@ class _SearchInput extends StatelessWidget {
           Gap($styles.insets.xs * 1.5),
           Icon(Icons.search, color: $styles.colors.caption),
           Expanded(
-            child: TextField(
+            child: MPFlutterTextField(
               onSubmitted: onSubmit,
               controller: textController,
               focusNode: focusNode,
               style: TextStyle(color: captionColor),
-              textAlignVertical: TextAlignVertical.top,
+              // textAlignVertical: TextAlignVertical.top,
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.all($styles.insets.xs),

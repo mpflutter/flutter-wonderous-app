@@ -131,7 +131,7 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
                   title: $strings.artifactsTitleArtifacts,
                   showBackBtn: false,
                   isTransparent: true,
-                  trailing: (context) => CircleBtn(
+                  leading: (context) => CircleBtn(
                     semanticLabel: $strings.artifactsButtonBrowse,
                     onPressed: _handleSearchTap,
                     child: AppIcon(AppIcons.search),

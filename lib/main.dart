@@ -23,8 +23,7 @@ import 'package:wonders/logic/settings_logic.dart' deferred as settings_logic;
 import 'package:wonders/ui/common/app_shortcuts.dart';
 
 import 'package:mpflutter_core/mpflutter_core.dart';
-
-import 'dart:js' as js;
+import 'package:mpflutter_core/mpjs/mpjs.dart' as mpjs;
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -69,11 +68,8 @@ class MPGoRouterObserver {
 
   void install(GoRouter goRouter) {
     goRouter.routeInformationProvider.addListener(() {
-      if (goRouter.canPop()) {
-        (js.context["FlutterHostView"]["shared"] as js.JsObject).callMethod("requireCatchBack", [true]);
-      } else {
-        (js.context["FlutterHostView"]["shared"] as js.JsObject).callMethod("requireCatchBack", [false]);
-      }
+      // 不允许右滑退出小程序
+      (mpjs.context['FlutterHostView']['shared'] as mpjs.JSObject).callMethod('requireCatchBack', [true]);
     });
   }
 }

@@ -80,7 +80,7 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
           child: ValueListenableBuilder<int>(
               valueListenable: _currentArtifactIndex,
               builder: (_, value, __) {
-                return _BlurredImageBg(url: _artifacts[value].imageUrl);
+                return _BlurredImageBg(url: _artifacts[value].imageUrlSmall);
               }),
         ),
 

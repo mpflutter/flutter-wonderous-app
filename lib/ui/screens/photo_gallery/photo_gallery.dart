@@ -144,7 +144,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     if (_checkCollectibleIndex(index) && isSelected) return;
     if (_index == index) {
       final urls = _photoIds.value.map((e) {
-        return UnsplashPhotoData.getSelfHostedUrl(e, UnsplashPhotoSize.xl);
+        return UnsplashPhotoData.getSelfHostedUrl(e, UnsplashPhotoSize.med);
       }).toList();
       int? newIndex = await appLogic.showFullscreenDialogRoute(
         context,
@@ -259,7 +259,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
               child: UnsplashPhoto(
                 imgUrl,
                 fit: BoxFit.cover,
-                size: UnsplashPhotoSize.large,
+                size: UnsplashPhotoSize.med,
               ).animate().fade(),
             );
 

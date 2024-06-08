@@ -28,9 +28,9 @@ class _ArtifactImageBtn extends StatelessWidget {
               bottom: false,
               minimum: EdgeInsets.symmetric(vertical: $styles.insets.sm),
               child: Hero(
-                tag: data.selfHostedImageUrl,
+                tag: data.selfHostedImageUrlSmall,
                 child: AppImage(
-                  image: MPFlutterNetworkImage(data.selfHostedImageUrl),
+                  image: MPFlutterNetworkImage(data.selfHostedImageUrlSmall),
                   fit: BoxFit.contain,
                   distractor: true,
                   scale: FullscreenUrlImgViewer.imageScale, // so the image isn't reloaded

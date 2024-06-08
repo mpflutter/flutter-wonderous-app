@@ -23,6 +23,7 @@ import 'package:wonders/logic/settings_logic.dart' deferred as settings_logic;
 import 'package:wonders/ui/common/app_shortcuts.dart';
 
 import 'package:mpflutter_core/mpflutter_core.dart';
+import 'package:mpflutter_core/mpjs/mpjs.dart' as mpjs;
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -62,9 +63,26 @@ void main() async {
   }
 }
 
+class MPGoRouterObserver {
+  static MPGoRouterObserver shared = MPGoRouterObserver();
+
+  void install(GoRouter goRouter) {
+    goRouter.routeInformationProvider.addListener(() {
+      if (goRouter.canPop()) {
+        (mpjs.context['FlutterHostView']['shared'] as mpjs.JSObject).callMethod('requireCatchBack', [true]);
+      } else {
+        (mpjs.context['FlutterHostView']['shared'] as mpjs.JSObject).callMethod('requireCatchBack', [false]);
+      }
+    });
+  }
+}
+
 /// Creates an app using the [MaterialApp.router] constructor and the global `appRouter`, an instance of [GoRouter].
 class WondersApp extends StatelessWidget with GetItMixin {
-  WondersApp({Key? key}) : super(key: key);
+  WondersApp({Key? key}) : super(key: key) {
+    MPGoRouterObserver.shared.install(appRouter);
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = watchX((SettingsLogic s) => s.currentLocale);

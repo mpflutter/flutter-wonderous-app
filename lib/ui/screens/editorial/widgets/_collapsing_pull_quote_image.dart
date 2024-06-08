@@ -46,17 +46,17 @@ class _CollapsingPullQuoteImage extends StatelessWidget {
             width: imgHeight * .66,
             child: Stack(
               children: [
-                Container(
-                  width: context.widthPx,
-                  height: imgHeight,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: $styles.colors.accent2),
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(context.widthPx / 2),
-                      topLeft: Radius.circular(context.widthPx / 2),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   width: context.widthPx,
+                //   height: imgHeight,
+                //   decoration: BoxDecoration(
+                //     border: Border.all(color: $styles.colors.accent2),
+                //     borderRadius: BorderRadius.only(
+                //       topRight: Radius.circular(context.widthPx / 2),
+                //       topLeft: Radius.circular(context.widthPx / 2),
+                //     ),
+                //   ),
+                // ),
 
                 /// Main image
                 Column(
@@ -71,8 +71,8 @@ class _CollapsingPullQuoteImage extends StatelessWidget {
                           Container(
                             alignment: Alignment.topRight,
                             margin: const EdgeInsets.all(12),
-                            child: ClipPath(
-                              clipper: CurvedTopClipper(),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
                               child: _buildImage(collapseAmt),
                             ),
                           ),
@@ -127,14 +127,14 @@ class _CollapsingPullQuoteImage extends StatelessWidget {
             opacity: AlwaysStoppedAnimation(1 - collapseAmt * .7),
           ),
         ),
-        GradientContainer(
-          [
-            Color(0xFFBEABA1).withOpacity(1),
-            Color(0xFFA6958C).withOpacity(1),
-          ],
-          const [0.0, 1.0],
-          blendMode: BlendMode.colorBurn,
-        ),
+        // GradientContainer(
+        //   [
+        //     Color(0xFFBEABA1).withOpacity(1),
+        //     Color(0xFFA6958C).withOpacity(1),
+        //   ],
+        //   const [0.0, 1.0],
+        //   blendMode: BlendMode.colorBurn,
+        // ),
       ],
     );
   }

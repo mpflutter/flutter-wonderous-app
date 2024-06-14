@@ -55,7 +55,7 @@ dependencies:
 
   # mpflutter deps
   mpflutter_core: ^2.6.0
-  mpflutter_build_tools: ^2.6.0
+  mpflutter_build_tools: ^2.6.3
   mpflutter_wechat_api: ^2.2.3
   mpflutter_wechat_editable: ^0.0.2
 
